@@ -1,4 +1,4 @@
-# LUNAR Rules
+# The Twelve Lunar Commandments
 
 1. NEVER use raw strings for Windows paths in Python patch specs or scripts.
    Use regular strings with doubled backslashes ("X:\\Models\\brain"),
@@ -25,3 +25,27 @@
    is worse than no default: the failure is invisible until someone looks.
    Prefer a required argument that errors immediately over a default that
    drifts.
+
+7. One source of truth. Never paste the same function, block, or string into
+   two files. Extract it to a shared module and import it — a second copy is
+   a bug waiting to diverge.
+
+8. Verify before you trust. After every write, run a compile or syntax check
+   (py_compile, node --check) before moving on. Never assume a write landed
+   clean.
+
+9. Break the loop from outside. When the agent is stuck retrying the same
+   failing command, stop it manually, fix the root cause, and only then let it
+   continue. Endless retries burn tokens without progress.
+
+10. Guardrails must guard themselves. Any lint, hook, or rule script must be
+    written in the style it enforces — no raw strings, no heredocs, no silent
+    defaults — or it becomes the thing it was built to catch.
+
+11. Prefer a loud error over a quiet wrong. If a script cannot do its job
+    correctly, it must refuse to run rather than produce a plausible-looking
+    wrong result.
+
+12. Every rule comes from a real failure, not a guess. Add a commandment only
+    after it has burned you once — earned rules stick, invented ones get
+    ignored.
